@@ -16,3 +16,8 @@ button,
 textarea {
    font: 500 18px Nunito, sans-serif;
 }
+
+a {
+   text-decoration: none;
+   color: #fff;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import UseAnimations from 'react-useanimations'
+import { Link } from 'react-router-dom'
 
 import searchToX from 'react-useanimations/lib/searchToX'
 
@@ -10,25 +11,34 @@ export default function Navbar() {
 
    return (
       <nav>
-         <span>AlegreShow</span>
+         <span>
+            <Link to="/">AlegreShow</Link>
+         </span>
          <ul>
-            <li>Casas de show</li>
-            <li>Eventos</li>
-            <li className="search">
+            <li>
+               <Link to="/houses">Casas de show</Link>
+            </li>
+            <li>
+               <Link to="/events">Eventos</Link>
+            </li>
+            {/* <li
+               className="search"
+               onClick={e => {
+                  document.getElementById('search-icon').click()
+               }}
+            >
                <input
                   type="text"
                   className={expandedSearch ? 'expanded' : ''}
                   placeholder="Procure por eventos"
                />
                <UseAnimations
+                  id="search-icon"
                   animation={searchToX}
                   size={20}
-                  strokeColor="#09793e"
-                  onClick={e => {
-                     setExpandedSearch(!expandedSearch)
-                  }}
+                  strokeColor="#fff"
                />
-            </li>
+            </li> */}
          </ul>
       </nav>
    )

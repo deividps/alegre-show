@@ -1,0 +1,192 @@
+#event-container {
+   position: relative;
+   min-height: 100vh;
+   /* width: 100vw; */
+}
+
+#event-container > main {
+   width: 700px;
+   margin: 0 auto;
+   padding: 110px 0 270px 0;
+}
+
+#event-container .info {
+   width: 100%;
+   border-radius: 20px;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+.info > img {
+   width: 100%;
+   height: 400px;
+   object-fit: cover;
+   border-radius: 20px 20px 0 0;
+}
+
+.info h2,
+.info p {
+   padding: 10px 20px 15px 20px;
+}
+
+#event-container .secondary-info {
+   margin-top: 15px;
+   margin-bottom: 20px;
+
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.secondary-info div {
+   width: 23%;
+   padding: 10px;
+
+   text-align: center;
+   color: #999;
+
+   border-radius: 20px;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+.secondary-info div > svg {
+   margin-right: 7px;
+}
+
+#time path {
+   fill: #ff3158;
+}
+
+#date path {
+   fill: #0ab7f7;
+}
+
+#ticket path {
+   fill: #02e345;
+}
+
+#open path {
+   fill: #f09a29;
+}
+
+.attractions-list {
+   margin-top: 10px;
+   width: 100%;
+   display: inline-grid;
+   grid-auto-flow: column;
+   column-gap: 15px;
+}
+
+.attractions-list .attraction {
+   position: relative;
+   width: 200px;
+   height: 400px;
+
+   border-radius: 20px;
+
+   pointer-events: none;
+   transform: translateZ(0);
+   transform-style: preserve-3d;
+   backface-visibility: hidden;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+.attraction img {
+   width: 100%;
+   height: 100%;
+   border-radius: 20px;
+
+   object-fit: cover;
+}
+
+.attraction .info,
+.attraction img {
+   transform-style: preserve-3d;
+}
+
+.attraction .attraction-info {
+   position: absolute;
+
+   bottom: 0px;
+   width: 100%;
+   height: 75%;
+
+   display: flex;
+   justify-content: flex-end;
+   flex-direction: column;
+
+   padding: 20px;
+   padding-top: 50px;
+
+   text-align: center;
+   color: #fff;
+
+   border-radius: 0 0 20px 20px;
+
+   background: linear-gradient(0deg, rgba(0, 0, 0, 1), transparent);
+}
+
+.attraction .attraction-info h2 {
+   opacity: 0.95;
+}
+
+.attraction .attraction-info p {
+   font-size: 16px;
+   line-height: 18px;
+}
+
+.attraction > p {
+   padding: 10px 15px;
+}
+
+.attraction .buttons {
+   position: absolute;
+   bottom: 0;
+   padding: 10px;
+   width: 100%;
+
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.attraction .buttons button {
+   border: none;
+   border-radius: 20px;
+   padding: 4px 10px;
+
+   background: transparent;
+
+   cursor: pointer;
+
+   transition: 0.2s ease-in-out;
+}
+
+.attraction .buttons button:hover {
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.35);
+}
+
+.attraction .buttons button svg {
+   margin-right: 5px;
+}
+
+.attraction .buttons #interested {
+   color: #ff3158;
+}
+
+.attraction .buttons #interested path {
+   fill: #ff3158;
+   opacity: 0.8;
+}
+
+.attraction .buttons #going {
+   color: #02e345;
+}
+
+.attraction .buttons #going path {
+   fill: #02e345;
+   opacity: 0.8;
+}
