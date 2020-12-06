@@ -1,21 +1,27 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import UseAnimations from 'react-useanimations'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
 import eventImg from '../../images/so-track-boa.jpg'
 import vintageImg from '../../images/vintage.jpg'
+import womanImg from '../../images/woman.jpg'
+import woman2Img from '../../images/woman2.jpg'
+import kvshImg from '../../images/kvsh.jpg'
 
 import {
    faCalendarAlt,
    faClock,
-   faMoneyBillAlt
+   faStar
 } from '@fortawesome/free-regular-svg-icons'
 
 import { faTicketAlt, faGlassCheers } from '@fortawesome/free-solid-svg-icons'
 
-import '../../utils/CardEffect'
+import alertCircle from 'react-useanimations/lib/alertCircle'
+
+// import '../../utils/CardEffect'
 
 import './styles.css'
 
@@ -50,6 +56,17 @@ export default function Event() {
                   Open Bar
                </div>
             </div>
+            <div className="info ps">
+               <h3 className="title">
+                  <UseAnimations
+                     animation={alertCircle}
+                     size={34}
+                     strokeColor="rgba(255, 49, 88, 0.4)"
+                  />
+                  Observações
+               </h3>
+               <p>Não pode fazer merda lá, bro</p>
+            </div>
             <h2>Principais Atrações</h2>
             <div className="attractions-list">
                <div className="attraction">
@@ -59,6 +76,52 @@ export default function Event() {
                      <p>
                         DJ Renomado no cenário atual, o cara eh pika p krl mlk
                      </p>
+                  </div>
+               </div>
+               <div className="attraction">
+                  <img src={kvshImg} alt="KVSH" />
+                  <div className="attraction-info">
+                     <h3>KVSH</h3>
+                     <p>
+                        Bichin eh feio mas toca bem pra krl. Embraza ao som
+                        desse mlk ae
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <h2>Localização</h2>
+            <div className="location"></div>
+            <h2>Reviews</h2>
+            <div className="reviews-list">
+               <div className="review">
+                  <img src={womanImg} alt="pessoa" />
+                  <div className="review-info">
+                     <h3>Maria Antonieta Paz</h3>
+                     <span>
+                        <FontAwesomeIcon icon={faStar} />
+                        9,7/10
+                     </span>
+                     <p>
+                        "Tô gostando bastante do evento. Ele faz eu me sentir
+                        renovada!!"
+                     </p>
+                     <sub> - Entrevistada no começo do evento.</sub>
+                  </div>
+               </div>
+               <div className="review">
+                  <img src={woman2Img} alt="pessoa" />
+                  <div className="review-info">
+                     <h3>Geovana Menegucci</h3>
+                     <span>
+                        <FontAwesomeIcon icon={faStar} />
+                        8,4/10
+                     </span>
+                     <p>
+                        "Teve algumas coisas que eu não curti, por exemplo
+                        quando o gnomo segurou minha mão e me levou pra fora do
+                        evento, vê se pode. Fora isso muito top!"
+                     </p>
+                     <sub> - Entrevistada no final do evento.</sub>
                   </div>
                </div>
             </div>

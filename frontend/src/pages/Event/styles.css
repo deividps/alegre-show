@@ -10,6 +10,10 @@
    padding: 110px 0 270px 0;
 }
 
+#event-container > main > h2 {
+   margin-top: 20px;
+}
+
 #event-container .info {
    width: 100%;
    border-radius: 20px;
@@ -37,6 +41,27 @@
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
+}
+
+.ps {
+   border: 2px dashed rgba(255, 49, 88, 0.4);
+   background: linear-gradient(305deg, rgba(255, 49, 88, 0.08), #fff);
+}
+
+.ps .title {
+   display: inline-flex;
+
+   align-items: center;
+
+   padding: 10px 20px 0px 20px;
+
+   color: rgba(255, 49, 88, 0.8);
+}
+
+.ps > p {
+   color: #9b9b9b;
+
+   font-style: italic;
 }
 
 .secondary-info div {
@@ -74,8 +99,7 @@
 .attractions-list {
    margin-top: 10px;
    width: 100%;
-   display: inline-grid;
-   grid-auto-flow: column;
+   display: inline-flex;
    column-gap: 15px;
 }
 
@@ -129,8 +153,16 @@
    background: linear-gradient(0deg, rgba(0, 0, 0, 1), transparent);
 }
 
-.attraction .attraction-info h2 {
+.attraction .attraction-info h3 {
    opacity: 0.95;
+
+   margin-bottom: 10px;
+
+   font-family: 'East Sea Dokdo', cursive;
+   font-size: 36px;
+
+   line-height: 28px;
+   letter-spacing: 3px;
 }
 
 .attraction .attraction-info p {
@@ -189,4 +221,73 @@
 .attraction .buttons #going path {
    fill: #02e345;
    opacity: 0.8;
+}
+
+.reviews-list .review {
+   position: relative;
+
+   width: 100%;
+   height: 150px;
+
+   margin-top: 10px;
+
+   border-radius: 20px;
+
+   display: inline-flex;
+
+   background: #fff;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+.reviews-list .review img {
+   height: 100%;
+   width: 35%;
+
+   object-fit: cover;
+
+   border-radius: 20px 0 0 20px;
+
+   clip-path: polygon(0 0%, 90% 0, 75% 100%, 0 100%);
+}
+
+.review .review-info {
+   padding: 10px 0;
+}
+
+.review .review-info span {
+   position: absolute;
+
+   top: 10px;
+   right: 15px;
+
+   color: #a1a1a1;
+
+   font-size: 16px;
+}
+
+.review .review-info span svg {
+   margin-right: 5px;
+}
+
+.review .review-info span svg path {
+   fill: #f09a29;
+}
+
+.review .review-info p {
+   margin-top: 5px;
+
+   font-style: italic;
+
+   color: #6b6b6b;
+}
+
+.review .review-info sub {
+   position: absolute;
+
+   bottom: 10px;
+
+   font-size: 14px;
+
+   color: #a1a1a1;
 }
