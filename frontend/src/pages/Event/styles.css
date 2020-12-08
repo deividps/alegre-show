@@ -18,6 +18,8 @@
    width: 100%;
    border-radius: 20px;
 
+   background: #fff;
+
    box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
 }
 
@@ -67,6 +69,8 @@
 .secondary-info div {
    width: 23%;
    padding: 10px;
+
+   background: #fff;
 
    text-align: center;
    color: #999;
@@ -222,6 +226,56 @@
    fill: #02e345;
    opacity: 0.8;
 }
+
+#event-container .location {
+   position: relative;
+
+   overflow: hidden;
+
+   margin-top: 10px;
+
+   height: 350px;
+   width: 100%;
+
+   border-radius: 20px;
+
+   background: #fff;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+#event-container .leaflet-container {
+   z-index: 5;
+}
+
+#event-container .leaflet-container .leaflet-marker-icon {
+   padding: 7px;
+
+   position: relative;
+
+   height: 30px;
+   width: 40px;
+
+   background: linear-gradient(
+      200deg,
+      rgba(9, 121, 62, 1) 0%,
+      rgb(2, 227, 70) 100%
+   );
+
+   border-radius: 20px;
+}
+
+/* #event-container .leaflet-container .leaflet-marker-icon::before {
+   content: '';
+
+   position: absolute;
+   bottom: 0;
+
+   width: 5px;
+   height: 5px;
+
+   background: red;
+} */
 
 .reviews-list .review {
    position: relative;

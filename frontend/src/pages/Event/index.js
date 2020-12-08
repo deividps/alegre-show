@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import UseAnimations from 'react-useanimations'
+
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
@@ -10,6 +13,8 @@ import vintageImg from '../../images/vintage.jpg'
 import womanImg from '../../images/woman.jpg'
 import woman2Img from '../../images/woman2.jpg'
 import kvshImg from '../../images/kvsh.jpg'
+
+import markerIcon from '../../utils/markerIcon'
 
 import {
    faCalendarAlt,
@@ -90,7 +95,40 @@ export default function Event() {
                </div>
             </div>
             <h2>Localização</h2>
-            <div className="location"></div>
+            <div className="location">
+               <Map
+                  center={[-20.763148, -41.5317971]}
+                  zoom={15}
+                  style={{ width: '100%', height: '100%' }}
+               >
+                  <TileLayer
+                     url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoicnlhbm1hdHRvcyIsImEiOiJja2llcDMxMHgwZWV4MnBxd3VkeXFvcTI4In0.uRDTBT6TGyiSIiIoCzzfXw"
+                     opacity={1}
+                     zIndex={10}
+                  />
+                  <Marker
+                     key="1"
+                     icon={markerIcon}
+                     position={[-20.763148, -41.5317971]}
+                  >
+                     <Popup
+                        closeButton={false}
+                        minWidth={200}
+                        maxWidth={200}
+                        className="map-popup"
+                     >
+                        Dale
+                        <a
+                           href="https://www.google.com/maps/dir/?api=1&destination=-20.763148, -41.5317971"
+                           target="_blank"
+                           rel="noreferrer"
+                        >
+                           Ver no maps
+                        </a>
+                     </Popup>
+                  </Marker>
+               </Map>
+            </div>
             <h2>Reviews</h2>
             <div className="reviews-list">
                <div className="review">
