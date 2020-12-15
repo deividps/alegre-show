@@ -1,6 +1,6 @@
-import connection from '../database/connection'
+const connection = require('../database/connection')
 
-export default {
+module.exports = {
    async index(request, response) {
       const houses = await connection('houses').select('*')
 
@@ -18,10 +18,27 @@ export default {
          latitude
       } = request.body
 
-      const requestImages = request.files
+      // console.log(request.file)
 
-      const images = requestImages.map(image => {
+      const images = request.files
+
+      // return response.json()
+
+      const image = images.map(image => {
          return { path: image.filename }
       })
+
+      console.log(
+         name,
+         description,
+         openHour,
+         openDay,
+         price,
+         latitude,
+         longitude,
+         images
+      )
+
+      return response.status(200)
    }
 }
