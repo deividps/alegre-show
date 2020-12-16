@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+//import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import UseAnimations from 'react-useanimations'
 
@@ -25,8 +25,6 @@ import {
 import { faTicketAlt, faGlassCheers } from '@fortawesome/free-solid-svg-icons'
 
 import alertCircle from 'react-useanimations/lib/alertCircle'
-
-// import '../../utils/CardEffect'
 
 import './styles.css'
 
@@ -102,7 +100,7 @@ export default function Event() {
                   style={{ width: '100%', height: '100%' }}
                >
                   <TileLayer
-                     url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoicnlhbm1hdHRvcyIsImEiOiJja2llcDMxMHgwZWV4MnBxd3VkeXFvcTI4In0.uRDTBT6TGyiSIiIoCzzfXw"
+                     url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_TOKEN}`}
                      opacity={1}
                      zIndex={10}
                   />
