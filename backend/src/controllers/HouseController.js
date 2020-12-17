@@ -36,7 +36,7 @@ module.exports = {
          price,
          latitude,
          longitude,
-         images
+         image
       )
 
       return response.status(200)

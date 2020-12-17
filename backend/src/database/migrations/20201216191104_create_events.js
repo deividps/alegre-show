@@ -5,6 +5,7 @@ exports.up = function (knex) {
       table.string('description').notNullable()
       table.integer('start_hour').notNullable()
       table.date('start_date').notNullable()
+      table.boolean('is_open_bar').defaultTo(false)
       table.string('ps')
       table.string('latitude').notNullable()
       table.string('longitude').notNullable()

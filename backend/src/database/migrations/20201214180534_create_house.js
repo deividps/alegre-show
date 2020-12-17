@@ -6,6 +6,7 @@ exports.up = function (knex) {
       table.string('open_hour').notNullable()
       table.string('open_day').notNullable()
       table.enu('price', ['$', '$$', '$$$']).notNullable()
+      table.float('rate', [2], [1]).defaultTo(0)
       table.string('latitude').notNullable()
       table.string('longitude').notNullable()
       table.boolean('is_approved').defaultTo(false)

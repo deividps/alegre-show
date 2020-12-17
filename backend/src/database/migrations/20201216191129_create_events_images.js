@@ -1,8 +1,16 @@
+exports.up = function (knex) {
+   return knex.schema.createTable('event_images', function (table) {
+      table.increments()
+      table.string('event_id').notNullable()
+      table.string('image').notNullable()
 
-exports.up = function(knex) {
-  
-};
+      table
+         .foreign('event_id')
+         .references('id')
+         .inTable('houses')
+         .onDelete('CASCADE')
+         .onUpdate('CASCADE')
+   })
+}
 
-exports.down = function(knex) {
-  
-};
+exports.down = function (knex) {}
