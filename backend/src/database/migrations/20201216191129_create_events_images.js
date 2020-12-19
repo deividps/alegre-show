@@ -1,6 +1,6 @@
 exports.up = function (knex) {
    return knex.schema.createTable('event_images', function (table) {
-      table.increments()
+      table.increments('id')
       table.string('event_id').notNullable()
       table.string('image').notNullable()
 
@@ -13,4 +13,6 @@ exports.up = function (knex) {
    })
 }
 
-exports.down = function (knex) {}
+exports.down = function (knex) {
+   return knex.schema.dropTableIfExists('event_images')
+}

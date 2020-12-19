@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
@@ -6,122 +7,52 @@ import Footer from '../../components/Footer'
 import houseImg from '../../images/house.jpg'
 import raveImg from '../../images/rave.jpg'
 
+import api from '../../services/api'
+
 import './styles.css'
 
 export default function HousesList() {
+   const [houses, setHouses] = useState([])
+
+   useEffect(() => {
+      api.get('houses').then(response => {
+         setHouses(response.data)
+      })
+   }, [])
+
+   if (!houses) {
+      return <p>Wait mtf</p>
+   }
+
    return (
       <div id="houses-container">
          <Navbar />
          <main>
             <div className="houses-list">
-               <div className="house">
-                  <img src={houseImg} alt="Casa de show" />
-                  <div>
-                     <h3>Mamus Club</h3>
-                     <p>
-                        casa de show top p krl, xama no dale que tu vai embrasar
-                        de coquinha gelada
-                     </p>
-                  </div>
-                  <div>
-                     <sub>Funcionamento</sub>
-                     <p>Qua - Dom</p>
-                     <sub>Aberto</sub>
-                     <p>18h - 4h</p>
-                     <sub>Valor</sub>
-                     <p>$$$</p>
-                  </div>
-               </div>
-               <div className="house">
-                  <img src={raveImg} alt="Casa de show" />
-                  <div>
-                     <h3>Grimland</h3>
-                     <p>
-                        Aqui voce vai usar tanta droga que vai dar um passeio de
-                        mãos dadas com 6 gnomos amarelos.
-                     </p>
-                  </div>
-                  <div>
-                     <sub>Funcionamento</sub>
-                     <p>Todos os dias.</p>
-                     <sub>Aberto</sub>
-                     <p>O dia todo.</p>
-                     <sub>Valor</sub>
-                     <p>$</p>
-                  </div>
-               </div>
-               <div className="house">
-                  <img src={raveImg} alt="Casa de show" />
-                  <div>
-                     <h3>Grimland</h3>
-                     <p>
-                        Aqui voce vai usar tanta droga que vai dar um passeio de
-                        mãos dadas com 6 gnomos amarelos.
-                     </p>
-                  </div>
-                  <div>
-                     <sub>Funcionamento</sub>
-                     <p>Todos os dias.</p>
-                     <sub>Aberto</sub>
-                     <p>O dia todo.</p>
-                     <sub>Valor</sub>
-                     <p>$</p>
-                  </div>
-               </div>
-               <div className="house">
-                  <img src={raveImg} alt="Casa de show" />
-                  <div>
-                     <h3>Grimland</h3>
-                     <p>
-                        Aqui voce vai usar tanta droga que vai dar um passeio de
-                        mãos dadas com 6 gnomos amarelos.
-                     </p>
-                  </div>
-                  <div>
-                     <sub>Funcionamento</sub>
-                     <p>Todos os dias.</p>
-                     <sub>Aberto</sub>
-                     <p>O dia todo.</p>
-                     <sub>Valor</sub>
-                     <p>$</p>
-                  </div>
-               </div>
-               <div className="house">
-                  <img src={raveImg} alt="Casa de show" />
-                  <div>
-                     <h3>Grimland</h3>
-                     <p>
-                        Aqui voce vai usar tanta droga que vai dar um passeio de
-                        mãos dadas com 6 gnomos amarelos.
-                     </p>
-                  </div>
-                  <div>
-                     <sub>Funcionamento</sub>
-                     <p>Todos os dias.</p>
-                     <sub>Aberto</sub>
-                     <p>O dia todo.</p>
-                     <sub>Valor</sub>
-                     <p>$</p>
-                  </div>
-               </div>
-               <div className="house">
-                  <img src={raveImg} alt="Casa de show" />
-                  <div>
-                     <h3>Grimland</h3>
-                     <p>
-                        Aqui voce vai usar tanta droga que vai dar um passeio de
-                        mãos dadas com 6 gnomos amarelos.
-                     </p>
-                  </div>
-                  <div>
-                     <sub>Funcionamento</sub>
-                     <p>Todos os dias.</p>
-                     <sub>Aberto</sub>
-                     <p>O dia todo.</p>
-                     <sub>Valor</sub>
-                     <p>$</p>
-                  </div>
-               </div>
+               {houses.map(house => {
+                  return (
+                     <Link to={`house/${house.id}`} key={house.id}>
+                        <div className="house">
+                           <img
+                              src={`http://localhost:3333/uploads/${house.thumb_img}`}
+                              alt={house.name}
+                           />
+                           <div>
+                              <h3>{house.name}</h3>
+                              <p>{house.description}</p>
+                           </div>
+                           <div>
+                              <sub>Funcionamento</sub>
+                              <p>{house.open_day}</p>
+                              <sub>Aberto</sub>
+                              <p>{house.open_hour}</p>
+                              <sub>Valor</sub>
+                              <p>{house.price}</p>
+                           </div>
+                        </div>
+                     </Link>
+                  )
+               })}
             </div>
          </main>
          <Footer />

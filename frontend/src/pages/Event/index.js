@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-//import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import UseAnimations from 'react-useanimations'
 
@@ -27,36 +27,52 @@ import { faTicketAlt, faGlassCheers } from '@fortawesome/free-solid-svg-icons'
 import alertCircle from 'react-useanimations/lib/alertCircle'
 
 import './styles.css'
+import api from '../../services/api'
 
 export default function Event() {
+   const params = useParams()
+   const [event, setEvent] = useState()
+   const [eventImages, setEventImages] = useState()
+
+   useEffect(() => {
+      api.get(`event/${params.id}`).then(response => {
+         setEvent(response.data)
+      })
+
+      api.get(`images/event/${params.id}`).then(response => {
+         setEventImages(response.data)
+      })
+   }, [params.id])
+
+   if (!event) {
+      return <p>Loading...</p>
+   }
+
    return (
       <div id="event-container">
          <Navbar />
          <main>
             <div className="info">
                <img src={eventImg} alt="evento" />
-               <h2>Só Track Boa</h2>
-               <p>
-                  Um dos melhores DJs brasileiros tocando num rolê enquanto tu
-                  chapa ácido até o cu encher.
-               </p>
+               <h2>{event.title}</h2>
+               <p>{event.description}</p>
             </div>
             <div className="secondary-info">
                <div>
                   <FontAwesomeIcon icon={faClock} id="time" />
-                  23h
+                  {event.start_hour}
                </div>
                <div>
                   <FontAwesomeIcon icon={faCalendarAlt} id="date" />
-                  30 dez 2020
+                  {event.start_date}
                </div>
                <div>
                   <FontAwesomeIcon icon={faTicketAlt} id="ticket" />
-                  R$ 80
+                  R$ {event.price}
                </div>
                <div>
                   <FontAwesomeIcon icon={faGlassCheers} id="open" />
-                  Open Bar
+                  {event.is_open_bar === 'true' ? 'Open Bar' : 'Sem Open Bar'}
                </div>
             </div>
             <div className="info ps">
@@ -68,7 +84,7 @@ export default function Event() {
                   />
                   Observações
                </h3>
-               <p>Não pode fazer merda lá, bro</p>
+               <p>{event.ps}</p>
             </div>
             <h2>Principais Atrações</h2>
             <div className="attractions-list">
@@ -95,7 +111,7 @@ export default function Event() {
             <h2>Localização</h2>
             <div className="location">
                <Map
-                  center={[-20.763148, -41.5317971]}
+                  center={[event.latitude, event.longitude]}
                   zoom={15}
                   style={{ width: '100%', height: '100%' }}
                >
@@ -107,7 +123,7 @@ export default function Event() {
                   <Marker
                      key="1"
                      icon={markerIcon}
-                     position={[-20.763148, -41.5317971]}
+                     position={[event.latitude, event.longitude]}
                   >
                      <Popup
                         closeButton={false}

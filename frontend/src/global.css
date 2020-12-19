@@ -22,3 +22,11 @@ a {
    text-decoration: none;
    color: #fff;
 }
+
+.carousel-root .control-next {
+   border-radius: 0 20px 0 0;
+}
+
+.carousel-root .control-prev {
+   border-radius: 20px 0 0 0;
+}

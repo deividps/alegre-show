@@ -15,8 +15,8 @@ export default function Routes() {
             <Route path="/" exact component={Home} />
             <Route path="/landing" component={Landing} />
             <Route path="/houses" component={HousesList} />
-            <Route path="/house" component={House} />
-            <Route path="/event" component={Event} />
+            <Route path="/house/:id" component={House} />
+            <Route path="/event/:id" component={Event} />
             <Route path="/events" component={EventsList} />
          </Switch>
       </BrowserRouter>

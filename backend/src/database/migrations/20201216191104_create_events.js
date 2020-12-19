@@ -1,17 +1,27 @@
 exports.up = function (knex) {
    return knex.schema.createTable('events', function (table) {
-      table.string('id')
+      table.increments('id')
+      table.string('thumb_img')
       table.string('title').notNullable()
       table.string('description').notNullable()
-      table.integer('start_hour').notNullable()
+      table.string('start_hour').notNullable()
       table.date('start_date').notNullable()
+      table.decimal('price')
       table.boolean('is_open_bar').defaultTo(false)
       table.string('ps')
-      table.string('latitude').notNullable()
-      table.string('longitude').notNullable()
+      table.float('latitude').notNullable()
+      table.float('longitude').notNullable()
+      table.string('house_id').notNullable()
+
+      table
+         .foreign('house_id')
+         .references('id')
+         .inTable('houses')
+         .onDelete('CASCADE')
+         .onUpdate('CASCADE')
    })
 }
 
 exports.down = function (knex) {
-   return knex.schema.dropTable('events')
+   return knex.schema.dropTableIfExists('events')
 }

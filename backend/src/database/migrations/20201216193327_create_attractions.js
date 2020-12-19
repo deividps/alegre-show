@@ -5,9 +5,16 @@ exports.up = function (knex) {
       table.string('image').notNullable()
       table.string('name').notNullable()
       table.string('description', 200).notNullable()
+
+      table
+         .foreign('event_id')
+         .references('id')
+         .inTable('events')
+         .onDelete('CASCADE')
+         .onUpdate('CASCADE')
    })
 }
 
 exports.down = function (knex) {
-   return knex.schema.dropTable('attractions')
+   return knex.schema.dropTableIfExists('attractions')
 }
