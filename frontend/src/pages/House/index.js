@@ -49,11 +49,9 @@ export default function House() {
       })
    }, [params.id])
 
-   if (!house && !houseImages) {
+   if (!house) {
       return <p>Wait</p>
    }
-
-   console.log(house, houseImages)
 
    return (
       <div id="house-container">
@@ -61,16 +59,17 @@ export default function House() {
          <main>
             <div className="info">
                <Carousel>
-                  {houseImages.map(image => {
-                     return (
-                        <div key={image.id}>
-                           <img
-                              src={`http://localhost:3333/uploads/${image.image}`}
-                              alt={image.id}
-                           />
-                        </div>
-                     )
-                  })}
+                  {houseImages &&
+                     houseImages.map(image => {
+                        return (
+                           <div key={image.id}>
+                              <img
+                                 src={`http://localhost:3333/uploads/${image.image}`}
+                                 alt={image.id}
+                              />
+                           </div>
+                        )
+                     })}
                </Carousel>
 
                <div className="images"></div>

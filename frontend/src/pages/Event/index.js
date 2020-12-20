@@ -157,7 +157,7 @@ export default function Event() {
                      >
                         Dale
                         <a
-                           href="https://www.google.com/maps/dir/?api=1&destination=-20.763148, -41.5317971"
+                           href={`https://www.google.com/maps/dir/?api=1&destination=${event.latitude},${event.longitude}`}
                            target="_blank"
                            rel="noreferrer"
                         >
