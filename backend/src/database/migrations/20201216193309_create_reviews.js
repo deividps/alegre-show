@@ -5,7 +5,7 @@ exports.up = function (knex) {
       table.string('name').notNullable()
       table.string('review', 300).notNullable()
       table.float('rate', [2], [1]).notNullable()
-      table.enu('interviewed_at', ['beginning', 'middle', 'end']).notNullable()
+      table.enu('interviewed_at', ['começo', 'meio', 'fim']).notNullable()
       table.string('event_id').notNullable()
 
       table

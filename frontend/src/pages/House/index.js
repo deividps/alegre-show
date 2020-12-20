@@ -31,7 +31,7 @@ import './styles.css'
 export default function House() {
    const params = useParams()
    const [house, setHouse] = useState()
-   const [houseImages, setHouseImages] = useState()
+   const [houseImages, setHouseImages] = useState([])
    const [events, setEvents] = useState()
    const [eventImages, setEventImages] = useState()
 
@@ -49,9 +49,11 @@ export default function House() {
       })
    }, [params.id])
 
-   if (!house) {
+   if (!house && !houseImages) {
       return <p>Wait</p>
    }
+
+   console.log(house, houseImages)
 
    return (
       <div id="house-container">

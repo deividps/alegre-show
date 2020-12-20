@@ -6,7 +6,6 @@ module.exports = {
    async all(request, response) {
       const houses = await connection('houses').select('*')
 
-      console.log('a')
       return response.json(houses)
    },
 

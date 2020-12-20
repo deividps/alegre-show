@@ -4,7 +4,7 @@ const connection = require('../database/connection')
 module.exports = {
    async house(request, response) {
       const images = await connection('houses_images')
-         .where('house_id', request.params.houseId)
+         .where('house_id', request.params.id)
          .select('image')
 
       return response.json(images)
