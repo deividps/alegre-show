@@ -47,6 +47,8 @@ export default function House() {
       api.get(`event/byhouse/${params.id}`).then(response => {
          setEvents(response.data)
       })
+
+      api.get(`images/event/${params.id}`).then()
    }, [params.id])
 
    if (!house) {

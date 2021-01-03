@@ -3,6 +3,8 @@ const routes = require('./routes')
 const cors = require('cors')
 const path = require('path')
 
+const connection = require('./database/connection')
+
 const app = express()
 
 app.use(cors())
