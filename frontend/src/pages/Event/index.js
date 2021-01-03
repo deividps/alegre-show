@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import UseAnimations from 'react-useanimations'
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
+import { computeDistanceBetween } from 'spherical-geometry-js'
+
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import { Carousel } from 'react-responsive-carousel'
+import Loading from '../../components/Loading'
 
-import eventImg from '../../images/so-track-boa.jpg'
-import vintageImg from '../../images/vintage.jpg'
-import womanImg from '../../images/woman.jpg'
-import woman2Img from '../../images/woman2.jpg'
-import kvshImg from '../../images/kvsh.jpg'
+import { Carousel } from 'react-responsive-carousel'
 
 import markerIcon from '../../utils/markerIcon'
 
@@ -32,12 +30,21 @@ import api from '../../services/api'
 
 export default function Event() {
    const params = useParams()
+   const history = useHistory()
+   const [position, setPosition] = useState({ lat: 0, lng: 0 })
+   const [distance, setDistance] = useState()
    const [event, setEvent] = useState()
    const [eventImages, setEventImages] = useState()
    const [reviews, setReviews] = useState()
    const [attractions, setAttractions] = useState()
 
    useEffect(() => {
+      const pos = JSON.parse(localStorage.getItem('position'))
+
+      if (!pos) {
+         history.push('/landing')
+      }
+
       async function fetch() {
          await api.get(`event/${params.id}`).then(response => {
             setEvent(response.data[0])
@@ -56,13 +63,34 @@ export default function Event() {
          })
       }
       fetch()
+
+      setPosition(pos)
    }, [params.id])
 
    if (!event) {
-      return <p>Loading...</p>
+      return <Loading />
    }
 
-   console.log(event)
+   function handleCalculateDistance(pos, ev) {
+      if (!distance) {
+         const calculateDistance = computeDistanceBetween(pos, {
+            lat: ev.latitude,
+            lng: ev.longitude
+         })
+
+         let formatted =
+            Math.round((calculateDistance + Number.EPSILON) * 100) / 100
+         if (calculateDistance > 500) {
+            formatted =
+               Math.round((formatted / 1000 + Number.EPSILON) * 100) / 100
+            formatted += 'km'
+         } else {
+            formatted += 'm'
+         }
+
+         setDistance(formatted)
+      }
+   }
 
    return (
       <div id="event-container">
@@ -134,6 +162,8 @@ export default function Event() {
             </div>
             <h2>Localização</h2>
             <div className="location">
+               {event && handleCalculateDistance(position, event)}
+               <span>A {event && distance} de você.</span>
                <Map
                   center={[event.latitude, event.longitude]}
                   zoom={15}
@@ -155,7 +185,7 @@ export default function Event() {
                         maxWidth={200}
                         className="map-popup"
                      >
-                        Dale
+                        {event.title}
                         <a
                            href={`https://www.google.com/maps/dir/?api=1&destination=${event.latitude},${event.longitude}`}
                            target="_blank"

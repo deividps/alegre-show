@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UseAnimations from 'react-useanimations'
+import { useHistory } from 'react-router-dom'
+
+import { computeDistanceBetween } from 'spherical-geometry-js'
 
 import bookmark from 'react-useanimations/lib/bookmark'
 import star from 'react-useanimations/lib/star'
@@ -10,9 +13,41 @@ import Event from '../../images/so-track-boa.jpg'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
+import api from '../../services/api'
+
 import './styles.css'
 
 export default function Home() {
+   const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
+   const [distance, setDistance] = useState()
+   const history = useHistory()
+
+   useEffect(() => {
+      const { lat, lng } = JSON.parse(localStorage.getItem('position'))
+
+      if (lat === null) {
+         history.push('/landing')
+      }
+
+      setPosition({
+         latitude: lat,
+         longitude: lng
+      })
+
+      const calculateDistance = computeDistanceBetween(
+         {
+            lat,
+            lng
+         },
+         {
+            latitude: -20.754959481631797,
+            longitude: -41.542656350213385
+         }
+      )
+
+      setDistance(calculateDistance / 1000)
+   }, [position])
+
    return (
       <div id="home-container">
          <Navbar />

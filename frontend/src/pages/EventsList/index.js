@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import Loading from '../../components/Loading'
 
 import api from '../../services/api'
 
@@ -16,6 +17,10 @@ export default function EventsList() {
          setEvents(response.data)
       })
    }, [events])
+
+   if (!events) {
+      return <Loading />
+   }
 
    return (
       <div id="events-container">

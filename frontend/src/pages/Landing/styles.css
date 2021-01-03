@@ -1,0 +1,76 @@
+#landing-container .select-position {
+   width: 100vw;
+   height: 100vh;
+
+   position: relative;
+
+   overflow: hidden;
+}
+
+#landing-container .leaflet-container {
+   z-index: 5;
+   margin-top: -48px;
+}
+
+#landing-container h3 {
+   position: relative;
+   z-index: 999;
+   top: 90px;
+
+   width: 450px;
+
+   display: flex;
+   justify-content: center;
+   margin: 0 auto;
+
+   text-align: center;
+
+   background: #fff;
+
+   border-radius: 20px;
+
+   padding: 10px;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+#landing-container button {
+   position: absolute;
+
+   z-index: 999;
+
+   bottom: 215px;
+   right: 15px;
+
+   border: none;
+   border-radius: 20px;
+
+   padding: 20px 25px;
+
+   font-size: 24px;
+
+   /* background-color: rgba(9, 121, 62, 1); */
+   background: rgb(2, 227, 70);
+
+   transition: 0.25s ease-in-out;
+}
+
+#landing-container .disabled {
+   opacity: 0.4;
+}
+
+#landing-container .clickable:hover {
+   background-color: rgb(9, 121, 62);
+}
+
+#landing-container button svg path {
+   fill: #fff;
+}
+
+#landing-container .leaflet-top {
+   margin-top: 90px;
+}
+
+#landing-container footer {
+   height: 200px;
+}

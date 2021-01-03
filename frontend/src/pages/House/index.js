@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useParams } from 'react-router-dom'
+
+import { computeDistanceBetween } from 'spherical-geometry-js'
 
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -9,6 +11,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import Loading from '../../components/Loading'
 
 import raveImg from '../../images/rave.jpg'
 import eventImg from '../../images/so-track-boa.jpg'
@@ -30,12 +33,20 @@ import './styles.css'
 
 export default function House() {
    const params = useParams()
+   const history = useHistory()
+   const [position, setPosition] = useState({ lat: 0, lng: 0 })
+   const [distance, setDistance] = useState()
    const [house, setHouse] = useState()
    const [houseImages, setHouseImages] = useState([])
    const [events, setEvents] = useState()
-   const [eventImages, setEventImages] = useState()
 
    useEffect(() => {
+      const pos = JSON.parse(localStorage.getItem('position'))
+
+      if (!pos) {
+         history.push('/landing')
+      }
+
       api.get(`house/${params.id}`).then(response => {
          setHouse(response.data[0])
       })
@@ -48,11 +59,32 @@ export default function House() {
          setEvents(response.data)
       })
 
-      api.get(`images/event/${params.id}`).then()
+      setPosition(pos)
    }, [params.id])
 
    if (!house) {
-      return <p>Wait</p>
+      return <Loading />
+   }
+
+   function handleCalculateDistance(pos, ev) {
+      if (!distance) {
+         const calculateDistance = computeDistanceBetween(pos, {
+            lat: ev.latitude,
+            lng: ev.longitude
+         })
+
+         let formatted =
+            Math.round((calculateDistance + Number.EPSILON) * 100) / 100
+         if (calculateDistance > 500) {
+            formatted =
+               Math.round((formatted / 1000 + Number.EPSILON) * 100) / 100
+            formatted += 'km'
+         } else {
+            formatted += 'm'
+         }
+
+         setDistance(formatted)
+      }
    }
 
    return (
@@ -98,6 +130,8 @@ export default function House() {
             </div>
             <h2>Localização</h2>
             <div className="location">
+               {house && handleCalculateDistance(position, house)}
+               <span>A {house && distance} de você.</span>
                <Map
                   center={[house.latitude, house.longitude]}
                   zoom={15}
@@ -133,31 +167,32 @@ export default function House() {
             </div>
             <h2>Eventos</h2>
             <div className="events-list">
-               <div className="event">
-                  <Carousel>
-                     <div>
-                        <img src={eventImg} alt="Evento" />
-                     </div>
-                     <div>
-                        <img src={raveImg} alt="Evento" />
-                     </div>
-                  </Carousel>
-                  <div className="event-info">
-                     <h2>Só track boa</h2>
-                     <p>30 dez 2020</p>
-                  </div>
-                  <p>Só xmaa no dale e bó usa lansa</p>
-                  <div className="buttons">
-                     <button id="interested">
-                        <FontAwesomeIcon icon={faBookmark} />
-                        Tenho interesse
-                     </button>
-                     <button id="going">
-                        <FontAwesomeIcon icon={faCheckCircle} />
-                        Eu vou ir
-                     </button>
-                  </div>
-               </div>
+               {events &&
+                  events.map(event => {
+                     return (
+                        <div className="event">
+                           <img
+                              src={`http://localhost:3333/uploads/${event.thumb_img}`}
+                              alt={event.title}
+                           />
+                           <div className="event-info">
+                              <h2>{event.title}</h2>
+                              <p>{event.start_date}</p>
+                           </div>
+                           <p>{event.description}</p>
+                           <div className="buttons">
+                              <button id="interested">
+                                 <FontAwesomeIcon icon={faBookmark} />
+                                 Tenho interesse
+                              </button>
+                              <button id="going">
+                                 <FontAwesomeIcon icon={faCheckCircle} />
+                                 Eu vou ir
+                              </button>
+                           </div>
+                        </div>
+                     )
+                  })}
             </div>
          </main>
          <Footer />

@@ -1,4 +1,6 @@
 div > footer {
+   z-index: 999;
+
    position: absolute;
    bottom: 0;
 

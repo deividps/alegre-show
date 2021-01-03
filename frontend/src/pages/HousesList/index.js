@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import Loading from '../../components/Loading'
 
 import houseImg from '../../images/house.jpg'
 import raveImg from '../../images/rave.jpg'
@@ -21,7 +22,7 @@ export default function HousesList() {
    }, [])
 
    if (!houses) {
-      return <p>Wait mtf</p>
+      return <Loading />
    }
 
    return (

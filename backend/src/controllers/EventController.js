@@ -15,6 +15,14 @@ module.exports = {
       return response.json(events)
    },
 
+   async groupByDate(request, response) {
+      const events = await connection('events')
+         .select('*')
+         .groupBy('start_date')
+
+      return response.json(events)
+   },
+
    async index(request, response) {
       const event = await connection('events')
          .where('id', request.params.id)

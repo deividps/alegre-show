@@ -95,28 +95,38 @@
    box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
 }
 
+#house-container .location > span {
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: 999;
+
+   background: #fff;
+   padding: 5px 20px;
+
+   text-align: center;
+
+   color: #6b6b6b;
+
+   font-weight: bold;
+   font-size: 16px;
+
+   border-radius: 0 20px;
+
+   cursor: pointer;
+
+   transition: 0.2s ease-in-out;
+}
+
+#house-container .location > span:hover {
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
 #house-container .leaflet-container {
    z-index: 5;
 }
 
-#house-container .leaflet-container .leaflet-marker-icon {
-   padding: 7px;
-
-   position: relative;
-
-   height: 30px;
-   width: 40px;
-
-   background: linear-gradient(
-      200deg,
-      rgba(9, 121, 62, 1) 0%,
-      rgb(2, 227, 70) 100%
-   );
-
-   border-radius: 20px;
-}
-
-.events-list .event {
+#house-container .events-list .event {
    position: relative;
    width: 300px;
    height: 385px;
@@ -128,6 +138,17 @@
    box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
 }
 
+/* provisory */
+#house-container .events-list .event img {
+   height: 250px;
+
+   width: 100%;
+
+   border-radius: 20px 20px 0 0;
+
+   object-fit: cover;
+}
+
 #house-container .carousel-slider img {
    width: 100%;
 
@@ -136,7 +157,7 @@
    object-fit: cover;
 }
 
-.event .carousel-slider img {
+#house-container .event .carousel-slider img {
    height: 250px;
 }
 

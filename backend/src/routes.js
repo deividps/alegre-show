@@ -16,6 +16,7 @@ routes.post('/event', upload.array('images'), EventController.create)
 routes.get('/events', EventController.all)
 routes.get('/event/:id', EventController.index)
 routes.get('/event/byhouse/:houseId', EventController.byHouse)
+routes.get('/events/groupbydate', EventController.groupByDate)
 
 routes.post('/house', upload.array('images'), HouseController.create)
 routes.get('/houses', HouseController.all)

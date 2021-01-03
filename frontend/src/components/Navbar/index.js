@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import searchToX from 'react-useanimations/lib/searchToX'
 
+import logoImg from '../../images/beer.svg'
+
 import './styles.css'
 
 export default function Navbar() {
@@ -12,7 +14,9 @@ export default function Navbar() {
    return (
       <nav>
          <span>
-            <Link to="/">AlegreShow</Link>
+            <Link to="/">
+               <img src={logoImg} alt="logo" />
+            </Link>
          </span>
          <ul>
             <li>
