@@ -23,7 +23,7 @@ export default function Landing() {
       if (position.lat !== 0) {
          localStorage.setItem('position', JSON.stringify(position))
 
-         history.push('/')
+         history.goBack()
       }
    }
 

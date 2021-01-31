@@ -30,3 +30,38 @@ a {
 .carousel-root .control-prev {
    border-radius: 20px 0 0 0;
 }
+
+.leaflet-popup-content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.map-popup span {
+   font-size: 16px;
+   font-weight: bold;
+   color: #404040;
+}
+
+.map-popup a {
+   color: #fff;
+   background-color: rgba(9, 121, 62, 0.6) !important;
+   font-size: 20px;
+   padding: 20px;
+   line-height: 18px;
+   border-radius: 12px;
+
+   position: relative;
+
+   transition: 0.2s ease-in-out;
+}
+
+.map-popup a:hover {
+   background-color: rgba(9, 121, 62, 1) !important;
+}
+
+.map-popup a > svg {
+   position: absolute;
+   top: 10px;
+   left: 10px;
+}

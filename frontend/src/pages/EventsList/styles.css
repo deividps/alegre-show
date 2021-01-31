@@ -10,6 +10,10 @@
    padding: 100px 0 250px 0;
 }
 
+#events-container .events-list {
+   margin-top: 0;
+}
+
 #events-container .events-list .event {
    height: 150px;
    width: 100%;
@@ -36,6 +40,7 @@
 }
 
 #events-container .event > img {
+   height: 100% !important;
    width: 200px;
    object-fit: cover;
 

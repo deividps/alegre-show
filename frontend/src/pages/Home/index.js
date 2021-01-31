@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import UseAnimations from 'react-useanimations'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 import { computeDistanceBetween } from 'spherical-geometry-js'
+
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
+import markerIcon from '../../utils/markerIcon'
 
 import bookmark from 'react-useanimations/lib/bookmark'
 import star from 'react-useanimations/lib/star'
 import alertCircle from 'react-useanimations/lib/alertCircle'
 
-import Event from '../../images/so-track-boa.jpg'
+import EventImg from '../../images/so-track-boa.jpg'
 
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import Event from '../../components/Event'
+import Loading from '../../components/Loading'
 
 import api from '../../services/api'
 
@@ -21,13 +30,23 @@ export default function Home() {
    const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
    const [distance, setDistance] = useState()
    const history = useHistory()
+   const [events, setEvents] = useState()
+   const [houses, setHouses] = useState()
 
    useEffect(() => {
-      const { lat, lng } = JSON.parse(localStorage.getItem('position'))
+      api.get('events').then(response => {
+         setEvents(response.data)
+      })
 
-      if (lat === null) {
+      api.get('houses').then(response => {
+         setHouses(response.data)
+      })
+
+      if (!localStorage.getItem('position')) {
          history.push('/landing')
       }
+
+      const { lat, lng } = JSON.parse(localStorage.getItem('position'))
 
       setPosition({
          latitude: lat,
@@ -46,15 +65,72 @@ export default function Home() {
       )
 
       setDistance(calculateDistance / 1000)
-   }, [position])
+   }, [])
+
+   if (!events && !houses) {
+      return <Loading />
+   }
 
    return (
       <div id="home-container">
          <Navbar />
          <main>
-            <article className="news">
+            <h2>Próximos Eventos</h2>
+            <div className="events-list">
+               {events &&
+                  events.map(event => {
+                     return (
+                        <Event
+                           id={event.id}
+                           key={event.id}
+                           title={event.title}
+                           thumb={event.thumb_img}
+                           description={event.description}
+                           date={event.start_date}
+                        />
+                     )
+                  })}
+            </div>
+
+            <h2>Mapa de Eventos</h2>
+            <div className="location">
+               <Map
+                  center={[-20.754959481631797, -41.542656350213385]}
+                  zoom={15}
+                  style={{ width: '100%', height: '100%' }}
+               >
+                  <TileLayer
+                     url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoicnlhbm1hdHRvcyIsImEiOiJja2llcDMxMHgwZWV4MnBxd3VkeXFvcTI4In0.uRDTBT6TGyiSIiIoCzzfXw`}
+                     opacity={1}
+                     zIndex={10}
+                  />
+                  {events &&
+                     events.map(event => {
+                        return (
+                           <Marker
+                              key={event.id}
+                              icon={markerIcon}
+                              position={[event.latitude, event.longitude]}
+                           >
+                              <Popup
+                                 closeButton={false}
+                                 minWidth={200}
+                                 maxWidth={200}
+                                 className="map-popup"
+                              >
+                                 <span>{event.title}</span>
+                                 <Link to={`/event/${event.id}`}>
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                 </Link>
+                              </Popup>
+                           </Marker>
+                        )
+                     })}
+               </Map>
+            </div>
+            {/* <article className="news">
                <header>
-                  <img src={Event} alt="evento" />
+                  <img src={EventImg} alt="evento" />
                </header>
                <main>
                   <h2>Só Track Boa Festival</h2>
@@ -93,7 +169,7 @@ export default function Home() {
                      <span> Quero saber mais</span>
                   </button>
                </footer>
-            </article>
+            </article> */}
          </main>
          <Footer />
       </div>

@@ -7,7 +7,7 @@
 #house-container > main {
    width: 700px;
    margin: 0 auto;
-   padding: 110px 0 270px 0;
+   padding: 100px 0 270px 0;
 }
 
 #house-container .info {
@@ -83,7 +83,7 @@
 
    overflow: hidden;
 
-   margin-top: 10px;
+   margin: 10px 0 20px 0;
 
    height: 350px;
    width: 100%;
@@ -99,7 +99,7 @@
    position: absolute;
    right: 0;
    top: 0;
-   z-index: 999;
+   z-index: 998;
 
    background: #fff;
    padding: 5px 20px;

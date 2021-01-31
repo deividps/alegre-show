@@ -1,0 +1,96 @@
+.events-list .event {
+   position: relative;
+   width: 300px;
+   height: 385px;
+
+   border-radius: 20px;
+
+   background: #fff;
+
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.2);
+}
+
+/* provisory */
+.events-list .event img {
+   height: 250px;
+
+   width: 100%;
+
+   border-radius: 20px 20px 0 0;
+
+   object-fit: cover;
+}
+
+.event .event-info {
+   position: absolute;
+   top: 180px;
+   width: 100%;
+   height: 70px;
+   padding: 5px 15px;
+
+   color: #fff;
+
+   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 10%, transparent);
+}
+
+.event .event-info h2 {
+   opacity: 0.95;
+}
+
+.event .event-info p {
+   font-size: 16px;
+   line-height: 18px;
+}
+
+.event > p {
+   padding: 10px 15px;
+}
+
+.event .buttons {
+   position: absolute;
+   bottom: 0;
+   padding: 10px;
+   width: 100%;
+
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.event .buttons button {
+   border: none;
+   border-radius: 20px;
+   padding: 4px 10px;
+
+   background: transparent;
+
+   cursor: pointer;
+
+   transition: 0.2s ease-in-out;
+}
+
+.event .buttons button:hover {
+   box-shadow: 0px 5px 18px 0px rgba(124, 124, 124, 0.35);
+}
+
+.event .buttons button svg {
+   margin-right: 5px;
+}
+
+.event .buttons #interested {
+   color: #ff3158;
+}
+
+.event .buttons #interested path {
+   fill: #ff3158;
+   opacity: 0.8;
+}
+
+.event .buttons #going {
+   color: #02e345;
+}
+
+.event .buttons #going path {
+   fill: #02e345;
+   opacity: 0.8;
+}

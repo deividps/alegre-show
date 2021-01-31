@@ -101,7 +101,7 @@ export default function Event() {
                   {eventImages &&
                      eventImages.map(image => {
                         return (
-                           <div>
+                           <div key={image.id}>
                               <img
                                  src={`http://localhost:3333/uploads/${image.image}`}
                                  alt={image.id}
@@ -202,7 +202,7 @@ export default function Event() {
                {reviews &&
                   reviews.map(review => {
                      return (
-                        <div className="review">
+                        <div className="review" key={review.id}>
                            <img
                               src={`http://localhost:3333/uploads/${review.image}`}
                               alt={review.name}

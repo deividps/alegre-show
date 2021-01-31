@@ -16,7 +16,7 @@ export default function EventsList() {
       api.get('events').then(response => {
          setEvents(response.data)
       })
-   }, [events])
+   }, [])
 
    if (!events) {
       return <Loading />

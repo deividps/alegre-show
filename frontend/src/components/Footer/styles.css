@@ -11,8 +11,26 @@ div > footer {
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-direction: column;
 
    color: #fff;
    background: #404040;
    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+}
+
+footer > div {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: row;
+   gap: 35px;
+}
+
+footer > .footer-bottom {
+   margin-top: 20px;
+}
+
+ul {
+   list-style: none;
+   text-align: center;
 }

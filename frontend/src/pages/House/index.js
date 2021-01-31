@@ -27,6 +27,8 @@ import {
    faCheckCircle
 } from '@fortawesome/free-regular-svg-icons'
 
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 import api from '../../services/api'
 
 import './styles.css'
@@ -153,13 +155,13 @@ export default function House() {
                         maxWidth={200}
                         className="map-popup"
                      >
-                        {house.name}
+                        <span>{house.name}</span>
                         <a
                            href={`https://www.google.com/maps/dir/?api=1&destination=${house.latitude},${house.longitude}`}
                            target="_blank"
                            rel="noreferrer"
                         >
-                           Ver no maps
+                           <FontAwesomeIcon icon={faArrowRight} />
                         </a>
                      </Popup>
                   </Marker>
@@ -170,7 +172,7 @@ export default function House() {
                {events &&
                   events.map(event => {
                      return (
-                        <div className="event">
+                        <div className="event" key={event.id}>
                            <img
                               src={`http://localhost:3333/uploads/${event.thumb_img}`}
                               alt={event.title}
