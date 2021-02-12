@@ -4,6 +4,8 @@ exports.up = function (knex) {
       table.string('thumb_img')
       table.string('title').notNullable()
       table.string('description').notNullable()
+      table.integer('interested').default(0)
+      table.integer('going').default(0)
       table.string('start_hour').notNullable()
       table.date('start_date').notNullable()
       table.decimal('price')
