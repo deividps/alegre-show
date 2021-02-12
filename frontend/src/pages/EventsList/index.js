@@ -44,7 +44,11 @@ export default function EventsList() {
                                  <sub>Dia do Evento</sub>
                                  <p>{event.start_date}</p>
                                  <sub>Open Bar</sub>
-                                 <p>{event.is_open_bar ? 'Brota' : 'Nem'}</p>
+                                 <p>
+                                    {event.is_open_bar === 'true'
+                                       ? 'Brota'
+                                       : 'Nem'}
+                                 </p>
                                  <sub>Valor</sub>
                                  <p>{event.price}</p>
                               </div>

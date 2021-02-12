@@ -18,10 +18,15 @@ import markerIcon from '../../utils/markerIcon'
 import {
    faCalendarAlt,
    faClock,
-   faStar
+   faStar,
+   faCheckCircle
 } from '@fortawesome/free-regular-svg-icons'
 
-import { faTicketAlt, faGlassCheers } from '@fortawesome/free-solid-svg-icons'
+import {
+   faTicketAlt,
+   faGlassCheers,
+   faFire
+} from '@fortawesome/free-solid-svg-icons'
 
 import alertCircle from 'react-useanimations/lib/alertCircle'
 
@@ -112,6 +117,20 @@ export default function Event() {
                </Carousel>
                <h2>{event.title}</h2>
                <p>{event.description}</p>
+               <div className="side-buttons">
+                  <ul>
+                     <li>
+                        <button title="Eu vou!" id="going">
+                           <FontAwesomeIcon icon={faFire} />
+                        </button>
+                     </li>
+                     <li>
+                        <button title="Estou interessado!" id="interested">
+                           <FontAwesomeIcon icon={faCheckCircle} />
+                        </button>
+                     </li>
+                  </ul>
+               </div>
             </div>
             <div className="secondary-info">
                <div>
@@ -128,7 +147,7 @@ export default function Event() {
                </div>
                <div>
                   <FontAwesomeIcon icon={faGlassCheers} id="open" />
-                  {event.is_open_bar === 'true' ? 'Open Bar' : 'Sem Open Bar'}
+                  {event.is_open_bar === 'true' ? 'Open Bar' : 'Sem Open'}
                </div>
             </div>
             <div className="info ps">

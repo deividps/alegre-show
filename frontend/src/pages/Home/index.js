@@ -26,6 +26,11 @@ import api from '../../services/api'
 
 import './styles.css'
 
+import Carousel from 'nuka-carousel'
+
+console.log('Carousel', Carousel)
+console.log('Event', Event)
+
 export default function Home() {
    const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
    const [distance, setDistance] = useState()
@@ -77,19 +82,30 @@ export default function Home() {
          <main>
             <h2>Próximos Eventos</h2>
             <div className="events-list">
-               {events &&
-                  events.map(event => {
-                     return (
-                        <Event
-                           id={event.id}
-                           key={event.id}
-                           title={event.title}
-                           thumb={event.thumb_img}
-                           description={event.description}
-                           date={event.start_date}
-                        />
-                     )
-                  })}
+               <Carousel
+                  slidesToShow={2}
+                  slidesToScroll={1}
+                  wrapAround="true"
+                  transitionMode="scroll3d"
+                  zoomScale="0.9"
+                  opacityScale="0.4"
+                  frameOverflow="visible"
+                  withoutControls="true"
+               >
+                  {events &&
+                     events.map(event => {
+                        return (
+                           <Event
+                              id={event.id}
+                              key={event.id}
+                              title={event.title}
+                              thumb={event.thumb_img}
+                              description={event.description}
+                              date={event.start_date}
+                           />
+                        )
+                     })}
+               </Carousel>
             </div>
 
             <h2>Mapa de Eventos</h2>

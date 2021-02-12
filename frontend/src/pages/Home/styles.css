@@ -11,7 +11,13 @@
 }
 
 #home-container .events-list {
-   margin-bottom: 20px;
+   position: relative;
+   height: 415px;
+   padding: 0 10px 25px 10px;
+}
+
+#home-container .events-list a {
+   color: #333;
 }
 
 #home-container .location {

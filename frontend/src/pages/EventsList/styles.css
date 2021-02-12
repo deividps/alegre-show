@@ -12,6 +12,7 @@
 
 #events-container .events-list {
    margin-top: 0;
+   display: block;
 }
 
 #events-container .events-list .event {
