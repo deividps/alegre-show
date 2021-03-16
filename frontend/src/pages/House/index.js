@@ -34,6 +34,8 @@ import api from '../../services/api'
 import './styles.css'
 
 export default function House() {
+   document.title = "Alegre Show - "
+
    const params = useParams()
    const history = useHistory()
    const [position, setPosition] = useState({ lat: 0, lng: 0 })
@@ -67,6 +69,8 @@ export default function House() {
    if (!house) {
       return <Loading />
    }
+
+   document.title += `${house.name}`
 
    function handleCalculateDistance(pos, ev) {
       if (!distance) {

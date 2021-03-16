@@ -10,6 +10,8 @@ import api from '../../services/api'
 import './styles.css'
 
 export default function EventsList() {
+   document.title = "Alegre Show - Casas"
+
    const [events, setEvents] = useState()
 
    useEffect(() => {

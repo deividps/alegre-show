@@ -1,7 +1,7 @@
 {
    "name": "alegre-show",
    "version": "1.0.0",
-   "description": "",
+   "description": "API Alegre Show k",
    "main": "index.js",
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,9 @@
       "bcrypt": "^5.0.0",
       "cors": "^2.8.5",
       "crypto": "^1.0.1",
+      "dotenv": "^8.2.0",
       "express": "^4.17.1",
+      "helmet": "^4.4.1",
       "knex": "^0.21.12",
       "multer": "^1.4.2",
       "pg": "^8.5.1",

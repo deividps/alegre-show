@@ -5,14 +5,13 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Loading from '../../components/Loading'
 
-import houseImg from '../../images/house.jpg'
-import raveImg from '../../images/rave.jpg'
-
 import api from '../../services/api'
 
 import './styles.css'
 
 export default function HousesList() {
+   document.title = "Alegre Show - Casas"
+
    const [houses, setHouses] = useState([])
 
    useEffect(() => {

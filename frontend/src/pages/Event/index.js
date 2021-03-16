@@ -34,6 +34,8 @@ import './styles.css'
 import api from '../../services/api'
 
 export default function Event() {
+   document.title = "Alegre Show - "
+
    const params = useParams()
    const history = useHistory()
    const [position, setPosition] = useState({ lat: 0, lng: 0 })
@@ -75,6 +77,8 @@ export default function Event() {
    if (!event) {
       return <Loading />
    }
+
+   document.title += `${event.title}`
 
    function handleCalculateDistance(pos, ev) {
       if (!distance) {
