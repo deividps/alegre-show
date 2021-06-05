@@ -4,6 +4,8 @@ module.exports = {
    async all(request, response) {
       const events = await connection('events').select('*')
 
+      console.log("trying")
+
       return response.json(events)
    },
 
